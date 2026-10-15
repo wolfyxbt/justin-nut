@@ -1,0 +1,22 @@
+{
+  "name": "justin-nut",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plants vs. Zombies (Justin Nut Edition), an endless nut-bowling HTML canvas fan game",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "check": "node --check game.js && node --check plants.js && node --check assets/chapters.js && node --check assets/pingpong-sprites.js && node --check scripts/serve.mjs && node --check scripts/test-engine.mjs && node --check scripts/check-public.mjs",
+    "audit:public": "node scripts/check-public.mjs",
+    "verify": "npm run check && npm run audit:public && node scripts/test-engine.mjs",
+    "build:offline": "python3 scripts/build-offline.py",
+    "verify:offline": "node scripts/test-engine.mjs --standalone",
+    "export:public": "python3 scripts/export-public.py"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "0.1.100"
+  }
+}

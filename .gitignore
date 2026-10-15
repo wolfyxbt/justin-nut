@@ -1,0 +1,37 @@
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# Dependencies and generated files
+node_modules/
+dist/
+coverage/
+work/
+tmp/
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editor / OS files
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code session files (worktrees, preview launch config)
+.claude/
+
+# Private art sources, prompts, production tools and local exports
+/asset-packs/
+/tools/
+/exports/

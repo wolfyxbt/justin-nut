@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>植物大战僵尸（孙宇晨坚果版） · Plants vs. Zombies (Justin Nut Edition)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="page">
+    <div class="stage" id="stage">
+    <div class="game-wrap" id="game-wrap">
+      <div id="hud">
+        <!-- 坚果保龄球的传送带：底板和皮带是原版图片，卡片由 game.js 按槽位放入 belt-track。 -->
+        <div id="conveyor" aria-label="传送带，快捷键 3 取最前面的卡片"><div class="belt-strip"></div><div id="belt-track"></div></div>
+        <button id="shovel" aria-label="铲子，快捷键 5"><img src="assets/shovel-bank-original.png" alt=""><img class="tool" src="assets/shovel.gif" alt="铲子"></button>
+        <div id="score-panel" aria-live="off"><span>分数 <strong id="score-value">0</strong></span><span>僵尸 <strong id="kills-value">0</strong></span><strong id="time-value">0:00</strong></div>
+        <button id="menu-button" class="stone" aria-label="暂停菜单">菜单</button>
+      </div>
+      <div class="arena" id="arena">
+        <canvas id="game" width="900" height="600" aria-label="植物大战僵尸（孙宇晨坚果版） Plants vs. Zombies (Justin Nut Edition)，坚果保龄球，五行九列草坪。从传送带取卡，在红线左侧放下；喂一颗普通孙宇晨坚果给曾颖向日葵，10 秒后产出一颗红色坚果。快捷键 3 取最前面的卡片，5 选择铲子，空格暂停。"></canvas>
+        <canvas id="held-item" width="900" height="600" aria-hidden="true"></canvas>
+        <div id="notice" aria-live="polite"></div>
+        <div id="error" hidden></div>
+      </div>
+      <div id="overlay" class="overlay">
+        <section class="panel pvz-frame" id="dialog" aria-modal="true" role="dialog">
+          <h2 id="dialog-title">植物大战僵尸（孙宇晨坚果版）</h2>
+          <div id="dialog-body">
+            <div class="plant-cards" aria-label="保龄球植物卡片">
+              <figure class="plant-card"><img src="assets/packet-justin-nut.png" alt="孙宇晨坚果"></figure>
+              <figure class="plant-card"><img src="assets/packet-boom-nut.png" alt="爆炸坚果"></figure>
+              <figure class="plant-card"><img src="assets/packet-justin-sunflower.png" alt="景甜向日葵"></figure>
+              <figure class="plant-card" title="曾颖向日葵：喂孙宇晨坚果"><img src="assets/packet-zeng-ying-sunflower.png" alt="曾颖向日葵"></figure>
+            </div>
+          </div>
+          <button id="primary" class="stone large" disabled>正在加载素材…</button>
+          <div id="menu-settings" hidden>
+            <button id="sound-button" class="stone large menu-action" aria-pressed="true">声音：开</button>
+            <label class="volume" for="volume"><span>游戏音量</span><input type="range" id="volume" min="0" max="100" step="5" value="100" aria-label="游戏音量，只影响游戏音效"><strong id="volume-value">100%</strong></label>
+          </div>
+          <div id="extra-buttons"></div>
+        </section>
+      </div>
+    </div>
+    <!-- 左栏：标题牌和 YouTube 嵌入播放器。更换视频时修改下方 iframe 的 src，见 README。 -->
+    <aside id="watch" class="watch" aria-label="标题与视频">
+      <section id="info" class="pvz-frame">
+        <h1>植物大战僵尸<span class="sub">孙宇晨坚果版</span><span class="en">Plants vs. Zombies · Justin Nut Edition</span></h1>
+      </section>
+      <section class="watch-frame pvz-frame">
+        <div class="video-box"><iframe id="watch-frame" src="https://www.youtube.com/embed/0Z-vhBvBmUY?start=180&amp;enablejsapi=1&amp;rel=0&amp;playsinline=1" title="对话孙宇晨：年轻人如何抓住AI时代的机会？" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      </section>
+      <!-- 章节列表由 game.js 根据 assets/chapters.js 生成，点击后播放器跳到对应时间。 -->
+      <nav id="chapters" class="chapters pvz-frame" aria-label="视频章节">
+        <div class="chapter-bar">
+          <button id="chapter-prev" class="stone chapter-step" type="button" aria-label="上一章">◀</button>
+          <button id="chapter-current" class="chapter-toggle" type="button" aria-expanded="false" aria-controls="chapter-list"><span class="time"></span><span class="title"></span><span class="arrow" aria-hidden="true">▾</span></button>
+          <button id="chapter-next" class="stone chapter-step" type="button" aria-label="下一章">▶</button>
+        </div>
+        <div id="chapter-list" class="chapter-list"></div>
+      </nav>
+    </aside>
+    </div>
+  </main>
+  <script src="assets/chapters.js"></script>
+  <script src="assets/sprites.js"></script>
+  <script src="assets/justin-sprites.js"></script>
+  <script src="assets/pingpong-sprites.js"></script>
+  <script src="plants.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
